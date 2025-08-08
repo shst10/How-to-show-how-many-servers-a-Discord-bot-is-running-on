@@ -1,0 +1,14 @@
+@bot.event
+async def on_ready():
+    print(f"{bot.user} has connected to Discord!")
+    try:
+        await bot.tree.sync()  
+        print("Commands synced successfully!")
+    except Exception as e:
+        print(f"Failed to sync commands: {e}")
+    while True:
+        await bot.change_presence(
+            activity=discord.Game(f"{len(bot.guilds)}개의 서버에서 이용"),
+            status=discord.Status.online
+        )
+        await asyncio.sleep(60)
